@@ -1,0 +1,21 @@
+{
+  "name": "jandanielcz/simona",
+  "description": "Simple language used to specify when and to whom to send notifications.",
+  "type": "library",
+  "require-dev": {
+    "nette/tester": "^1"
+  },
+  "license": "MIT",
+  "authors": [
+    {
+        "name": "Jan Daniel Dolezal",
+        "email": "dan@jandaniel.cz"
+    }
+  ],
+  "require": {},
+  "autoload": {
+    "psr-4": {
+      "JanDanielCz\\Simona\\": "src/"
+    }
+  }
+}

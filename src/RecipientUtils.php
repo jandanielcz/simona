@@ -36,6 +36,6 @@ class RecipientUtils
         $carry['plain'][] = $recipient;
         return $carry;
 
-
     }
+
 }

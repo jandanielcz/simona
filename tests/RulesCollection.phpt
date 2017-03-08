@@ -125,3 +125,30 @@ Assert::equal(
     ],
     $rc->whoToNotify(1, false)
 );
+
+function exampleValidator(\JanDanielCz\Simona\NotificationRule $rule)
+{
+    // do not allow large intervals for done tasks
+    if ($rule->onlyIfUnsolved == false && ($rule->intervalStart - $rule->intervalEnd) >= 50) {
+        return false;
+    }
+
+    return true;
+}
+
+$rc = new RulesCollection();
+$rc->addRuleValidator('exampleValidator');
+Assert::equal(
+    [],
+    $rc->parse('(10..-60):dan;')->whoToNotify(9, true)
+);
+
+Assert::equal(
+    [],
+    $rc->parse('(10..):dan;')->whoToNotify(9, true)
+);
+
+Assert::equal(
+    ['dan'],
+    $rc->parse('(10..-60!):dan;')->whoToNotify(9, false)
+);

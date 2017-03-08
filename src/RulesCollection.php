@@ -8,6 +8,7 @@ class RulesCollection
 
     protected $rules = [];
     protected $recipientReducer = null;
+    protected $ruleValidators = [];
 
     public function parse($string)
     {
@@ -18,8 +19,13 @@ class RulesCollection
         $newRules = array();
         foreach ($lines as $oneLine) {
             if (( $new = $this->tryParseOne($oneLine) ) !== false) {
+
                 $newRules[] = $new;
             }
+        }
+
+        foreach ($this->ruleValidators as $rv) {
+            $newRules = array_filter($newRules, $rv);
         }
 
         $this->rules = array_merge($this->rules, $newRules);
@@ -126,6 +132,13 @@ class RulesCollection
     public function setRecipientReducer(callable $reducer)
     {
         $this->recipientReducer = $reducer;
+
+        return $this;
+    }
+
+    public function addRuleValidator(callable $validator)
+    {
+        $this->ruleValidators[] = $validator;
 
         return $this;
     }

@@ -71,6 +71,24 @@ Rule elements
 
 Each rule should be on separate line.
 
+#### Interval specification
+
+For definition of days for notification Simone uses days count to task date:
+
+```
+                     
+                    Day of task
+        ...3  2  1  0 -1 -2 -3 -4...
+--------------------|--------------------time-->
+                                         
+(..!)   ...X  X  X  X  X  X  X  X        every day until done
+(2..-1)       X  X  X  X
+(0..!)              X  X  X...           until done
+(3)        X                             once
+```
+
+Negative numbers means task should be done in histoy.
+
 Errors
 ------
 

@@ -12,7 +12,9 @@
         "email": "dan@jandaniel.cz"
     }
   ],
-  "require": {},
+  "require": {
+    "ext-mbstring": "*"
+  },
   "autoload": {
     "psr-4": {
       "JanDanielCz\\Simona\\": "src/"
